@@ -1,18 +1,17 @@
-/** 
-Sliding Window - findLongestSubstring
-Write a function called findLongestSubstring, which accepts a string and returns the length of the longest substring with all distinct characters.
+// Time Complexity - O(n)
+function findLongestSubstring(str) {
+  let start = 0;
+  let longest = 0;
+  let seen = {};
 
-findLongestSubstring(*') // 0
-findLongestSubstring('rithmschool') // 7
-findLongestSubstring('thisisawesome') // 6]
-findLongestSubstring('thecatinthehat') // 7
-findLongestSubstring('bbbbbb') // 1
-findLongestSubstring('longestsubstring') // 8|
-findLongestSubstring('thisishowwedoit') // 6
+  for (let end = 0; end < str.length; end++) {
+    let char = str[end];
+    if (seen[char] !== undefined && seen[char] >= start) {
+      start = seen[char] + 1;
+    }
+    seen[char] = end;
+    longest = Math.max(longest, end - start + 1);
+  }
 
-Time Complexity - O(n)
-**/
-
-function findLongestSubstring(){
-  // add whatever parameters you deem necessary - good luck!
+  return longest;
 }
